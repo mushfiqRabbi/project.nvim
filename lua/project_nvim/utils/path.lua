@@ -31,7 +31,8 @@ function M.is_excluded(dir)
 end
 
 function M.exists(path)
-  return vim.fn.empty(vim.fn.glob(path)) == 0
+  local escaped_path = path:gsub("%[", "\\["):gsub("%]", "\\]")
+  return vim.fn.empty(vim.fn.glob(escaped_path)) == 0
 end
 
 return M
